@@ -111,11 +111,11 @@ embedding models and improving LLM performance on Moroccan dialect text.
 
 # ─── IMPORTS ─────────────────────────────────────────────────────────────────
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
-from langchain_community.llms import Ollama
-from langchain.chains import RetrievalQA
-from langchain.prompts import PromptTemplate
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_ollama import OllamaLLM
+from langchain_classic.chains.retrieval_qa.base import RetrievalQA
+from langchain_core.prompts import PromptTemplate
 
 # ─── CONFIGURATION ───────────────────────────────────────────────────────────
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # runs locally, no API key
@@ -175,9 +175,13 @@ Answer:"""
 
 # ─── RETRIEVAL CHAIN ─────────────────────────────────────────────────────────
 def build_chain(vectorstore, prompt):
-    llm = Ollama(
+    llm = OllamaLLM(
         model=LLM_MODEL,
         temperature=0.1,
+        num_ctx=4096,
+        top_p=0.9,
+        top_k=40,
+        repeat_penalty=1.1,
     )
 
     retriever = vectorstore.as_retriever(
