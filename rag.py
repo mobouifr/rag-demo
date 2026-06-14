@@ -6,8 +6,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 # ─── DOCUMENT ────────────────────────────────────────────────────────────────
 # This is our knowledge base. In a real system this would be loaded from
 # a PDF or database. We hardcode it here to keep things simple.
-# The content is about AI systems and backend architecture — directly
-# relevant to AI Movement UM6P.
+# The content is about AI systems and backend architecture.
 
 DOCUMENT = """
 # AI Systems and Backend Architecture
@@ -105,8 +104,6 @@ on dialectal text.
 Tokenization: Arabic tokenizers must handle connected script and 
 diacritics correctly. Incorrect tokenization degrades embedding quality.
 
-Current research at AI Movement UM6P focuses on developing Arabic-specific 
-embedding models and improving LLM performance on Moroccan dialect text.
 """
 
 # ─── IMPORTS ─────────────────────────────────────────────────────────────────
